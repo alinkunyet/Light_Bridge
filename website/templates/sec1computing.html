@@ -33,17 +33,16 @@
     <h1 class="text-center mt-5 mb-2">{{title}}</h1>
     <br>
 
-        <div class="input-group mb-3">
-          <input 
-              type="text" 
-              class="form-control" 
-              placeholder="Enter the class number..." 
-              aria-label="Go to class" 
-              aria-describedby="button-addon2">
-          <button class="btn btn-primary" 
-              type="button" 
-              id="button-addon2">Go to Page</button>
-        </div>
+       <form method="POST" class="row g-3 pagination justify-content-center">
+         <div class="col-auto">
+           <label for="class_number" class="visually-hidden">Class Number</label>
+           <input   type="text" class="form-control" 
+                    id="classNum" name="classNum" placeholder="Enter the class number">
+         </div>
+         <div class="col-auto">
+           <button type="submit" class="btn btn-primary mb-3">Go to Class</button>
+         </div>
+       </form>
 
     <br>
 
