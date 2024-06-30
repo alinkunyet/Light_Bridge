@@ -23,7 +23,7 @@ def sec1computing():
       host=DB_HOST,
       port=DB_PORT)
     cur = conn.cursor()
-    sql = "SELECT * FROM sec1computing"
+    sql = "SELECT * FROM sec1computing ORDER BY classno"
     cur.execute(sql)
     data = cur.fetchall()
     cur.close()
@@ -46,7 +46,7 @@ def sec1computing():
                             host=DB_HOST,
                             port=DB_PORT)
     cur = conn.cursor()
-    sql = "SELECT * FROM sec1computing"
+    sql = "SELECT * FROM sec1computing ORDER BY classno"
     cur.execute(sql)
     data = cur.fetchall()
     cur.close()
@@ -59,19 +59,52 @@ def sec1computing():
 
 @sec1view.route("/update", methods=['GET', 'POST'])
 def update():
-
-  classNo = request.args.get('classNum')
-
-  conn = psycopg2.connect(database=DB_NAME,
+  if request.method == "POST":
+    try :
+      conn = psycopg2.connect(database=DB_NAME,
                           user=DB_USER,
                           password=DB_PASS,
                           host=DB_HOST,
                           port=DB_PORT)
-  cur = conn.cursor()
-  sql = "SELECT * FROM sec1computing WHERE classno = " + str(classNo) 
-  cur.execute(sql)
-  note = cur.fetchall()
-  cur.close()
-  conn.close()
+      cur = conn.cursor()
+      
+      classNo = request.form.get("num")
+      date = request.form.get("date")
+      topic = request.form.get("topic")
+      objectives = request.form.get("objectives")
+      method = request.form.get("method")
+      teacher = request.form.get("teacher")
+      student = request.form.get("student")
+     
+      sql = "UPDATE sec1computing SET date = %s, topic = %s, objectives = %s, method = %s, teacheractivity = %s, studentactivity = %s WHERE classno = %s"
+      val = (date, topic, objectives, method, teacher, student, classNo)
+      cur.execute(sql,val)
+      conn.commit()
+      cur.close()
+      conn.close()
+    except Exception as e:
+      print(e)
+     
+    return redirect(url_for("sec1view.sec1computing"))
+  	
+  else:
+    classNo =  request.args.get('classNum')
+    conn = psycopg2.connect(database=DB_NAME,
+                          user=DB_USER,
+                          password=DB_PASS,
+                          host=DB_HOST,
+                          port=DB_PORT)
+    cur = conn.cursor()
+    sql = "SELECT * FROM sec1computing WHERE classno = " + str(classNo) 
+    cur.execute(sql)
+    note = cur.fetchall()
+    cur.close()
+    conn.close()
+    
+    return render_template("update.html", note = note, classNum = classNo, title = "Update")
 
-  return render_template("update.html", note = note)
+
+
+@sec1view.route("/blank")
+def blank():
+  return render_template("blank.html")

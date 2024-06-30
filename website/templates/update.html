@@ -30,41 +30,41 @@
     <br>
 
    <div class="d-grid gap-2 col-9 mx-auto">
-       <form>
+       <form action="/update?classNum={{classNum}}" method="POST">
 
          <div class="mb-3">
            <label for="ClassNum" class="form-label">Class Number</label>
-           <input type="text" class="form-control" name="ClassNum" id="ClassNum" value={{note[0][0]}}>
+           <input type="text" class="form-control" name="num" value={{note[0][0]}}>
          </div>
 
          <div class="mb-3">
            <label for="Date" class="form-label">Date</label>
-           <input type="date" class="form-control" name="Date" id="Date" value={{note[0][1]}}>
+           <input type="date" class="form-control" name="date" value={{note[0][1]}}>
          </div>
 
        <div class="mb-3">
            <label for="Topic " class="form-label">Topic</label>
-           <textarea class="form-control" name="Topic"  id="Topic"> {{note[0][2]}} </textarea>
+           <textarea class="form-control" name="topic" >{{note[0][2]}}</textarea>
          </div>
 
          <div class="mb-3">
            <label for="Objective" class="form-label">Objective</label>
-           <textarea class="form-control" name="Objective" id="Objective" > {{note[0][3]}} </textarea>
+           <textarea class="form-control" name="objectives" >{{note[0][3]}}</textarea>
          </div>
 
        <div class="mb-3">
            <label for="Method" class="form-label">Method</label>
-           <textarea class="form-control" name="Method"  id="Method"> {{note[0][4]}}</textarea>
+           <textarea class="form-control" name="method" >{{note[0][4]}}</textarea>
        </div> 
 
        <div class="mb-3">
-           <label for="TeacherActivity" class="form-label">Teacher Activity</label>
-           <textarea class="form-control" name="TeacherActivity" id="TeacherActivity"> {{note[0][5]}} </textarea>
+           <label for="TeacherActivity" class="form --tail even">Teacher Activity</label>
+           <textarea class="form-control" name="teacher">{{note[0][5]}}</textarea>
        </div>
 
        <div class="mb-3">
            <label for="StudentActivity" class="form-label">Student Activity</label>
-           <textarea class="form-control" name="StudentActivity" id="StudentActivity"> {{note[0][6]}} </textarea>
+           <textarea class="form-control" name="student">{{note[0][6]}}</textarea>
          </div>
 
          <button type="submit" class="btn btn-primary">Update</button>
