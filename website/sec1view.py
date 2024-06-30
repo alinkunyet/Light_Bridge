@@ -9,6 +9,7 @@ DB_PASS = "de591a649e24bba5a421ba0063ee4bd2"
 DB_HOST = "pg-99bcde18-2a38-481f-8125-ad8d06aa1cbe.schematogo.us-east-1.antimony.io"
 DB_PORT = "20478"
 
+
 @sec1view.route("/", methods=['GET', 'POST'])
 def sec1computing():
 
@@ -40,10 +41,10 @@ def sec1computing():
   else:
 
     conn = psycopg2.connect(database=DB_NAME,
-      user=DB_USER,
-      password=DB_PASS,
-      host=DB_HOST,
-      port=DB_PORT)
+                            user=DB_USER,
+                            password=DB_PASS,
+                            host=DB_HOST,
+                            port=DB_PORT)
     cur = conn.cursor()
     sql = "SELECT * FROM sec1computing"
     cur.execute(sql)
@@ -58,16 +59,16 @@ def sec1computing():
 
 @sec1view.route("/update", methods=['GET', 'POST'])
 def update():
-  classNum = request.args.get('classNum')
 
+  classNo = request.args.get('classNum')
 
   conn = psycopg2.connect(database=DB_NAME,
-    user=DB_USER,
-    password=DB_PASS,
-    host=DB_HOST,
-    port=DB_PORT)
+                          user=DB_USER,
+                          password=DB_PASS,
+                          host=DB_HOST,
+                          port=DB_PORT)
   cur = conn.cursor()
-  sql = "SELECT * FROM sec1computing WHERE classno = " + str(classNum) 
+  sql = "SELECT * FROM sec1computing WHERE classno = " + str(classNo) 
   cur.execute(sql)
   note = cur.fetchall()
   cur.close()
