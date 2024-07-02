@@ -9,22 +9,15 @@ DB_PASS = "de591a649e24bba5a421ba0063ee4bd2"
 DB_HOST = "pg-99bcde18-2a38-481f-8125-ad8d06aa1cbe.schematogo.us-east-1.antimony.io"
 DB_PORT = "20478"
 
-@view.route("/home")
+@view.route("/")
 def home():
-  data = None
+  return render_template("home.html")
 
-  try:
-    conn = psycopg2.connect(database=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_HOST, port=DB_PORT)
-    cur = conn.cursor()
+@view.route("/sec1")
+def sec1():
+  return render_template("sec1.html")
 
-    sql = "SELECT * FROM users"
-    cur.execute(sql)
-    data = cur.fetchall()
-
-    cur.close()
-    conn.close()
-  except Exception as e:
-    print(e)
-
-  return render_template("index.html", users = data, title = "Users")
+@view.route("/sec2")
+def sec2():
+  return render_template("sec2.html")
 
