@@ -30,44 +30,44 @@
     <br>
 
    <div class="d-grid gap-2 col-9 mx-auto">
-       <form action="/update?classNum={{classNum}}" method="POST">
+       <form action="/sec1computingInsert" method="POST">
 
          <div class="mb-3">
            <label for="ClassNum" class="form-label">Class Number</label>
-           <input type="text" class="form-control" name="num" value={{note[0][0]}}>
+           <input type="text" class="form-control" name="num" value="{{classNum}}">
          </div>
 
          <div class="mb-3">
            <label for="Date" class="form-label">Date</label>
-           <input type="date" class="form-control" name="date" value={{note[0][1]}}>
+           <input type="date" class="form-control" name="date" value="">
          </div>
 
        <div class="mb-3">
            <label for="Topic " class="form-label">Topic</label>
-           <textarea class="form-control" name="topic" >{{note[0][2]}}</textarea>
+           <textarea class="form-control" name="topic" ></textarea>
          </div>
 
          <div class="mb-3">
            <label for="Objective" class="form-label">Objective</label>
-           <textarea class="form-control" name="objectives" >{{note[0][3]}}</textarea>
+           <textarea class="form-control" name="objectives" ></textarea>
          </div>
 
        <div class="mb-3">
            <label for="Method" class="form-label">Method</label>
-           <textarea class="form-control" name="method" >{{note[0][4]}}</textarea>
+           <textarea class="form-control" name="method" ></textarea>
        </div> 
 
        <div class="mb-3">
            <label for="TeacherActivity" class="form --tail even">Teacher Activity</label>
-           <textarea class="form-control" name="teacher">{{note[0][5]}}</textarea>
+           <textarea class="form-control" name="teacher"></textarea>
        </div>
 
        <div class="mb-3">
            <label for="StudentActivity" class="form-label">Student Activity</label>
-           <textarea class="form-control" name="student">{{note[0][6]}}</textarea>
+           <textarea class="form-control" name="student"></textarea>
          </div>
 
-         <button type="submit" class="btn btn-primary">Update</button>
+         <button type="submit" class="btn btn-primary">Add New</button>
 
        </form>
    </div>
