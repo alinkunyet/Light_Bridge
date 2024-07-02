@@ -10,4 +10,7 @@ def create_app():
   from .sec1view import sec1view
   app.register_blueprint(sec1view, url_prefix='/')
 
+  from .sec2view import sec2view
+  app.register_blueprint(sec2view, url_prefix='/')
+
   return app
