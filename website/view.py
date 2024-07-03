@@ -38,21 +38,22 @@ def auth():
     user_found = False
     authorized = False
     for row in data:
-      print(row)
+      
       if username == row[0]:
         user_found = True
         if password == row[1]:
           authorized = True
         break
 
-    if authorized:
-      return redirect(url_for("view.home"))
+    if user_found:
+      if not authorized:
+        pass
+      else:
+        return redirect(url_for("view.home"))
     else:
-      return render_template("auth.html")
-    
-  else:
-    
-    return render_template("auth.html")
+      pass
+  
+  return render_template("auth.html")
 
 @view.route("/sec1")
 def sec1():
