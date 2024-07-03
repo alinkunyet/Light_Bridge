@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, redirect, render_template, request, url_for
 import psycopg2
 
 view = Blueprint('view', __name__)
@@ -10,8 +10,49 @@ DB_HOST = "pg-99bcde18-2a38-481f-8125-ad8d06aa1cbe.schematogo.us-east-1.antimony
 DB_PORT = "20478"
 
 @view.route("/")
+def index():
+  return render_template("index.html")
+  
+@view.route("/home")
 def home():
   return render_template("home.html")
+
+@view.route("/auth", methods=['GET','POST'])
+def auth():
+  if request.method == "POST":
+    username = request.form.get("username")
+    password = request.form.get("password")
+    
+    conn = psycopg2.connect(database=DB_NAME,
+                            user=DB_USER,
+                            password=DB_PASS,
+                            host=DB_HOST,
+                            port=DB_PORT)
+    cur = conn.cursor()
+    sql = "SELECT * FROM users"
+    cur.execute(sql)
+    data = cur.fetchall()
+    cur.close()
+    conn.close()
+
+    user_found = False
+    authorized = False
+    for row in data:
+      print(row)
+      if username == row[0]:
+        user_found = True
+        if password == row[1]:
+          authorized = True
+        break
+
+    if authorized:
+      return redirect(url_for("view.home"))
+    else:
+      return render_template("auth.html")
+    
+  else:
+    
+    return render_template("auth.html")
 
 @view.route("/sec1")
 def sec1():
