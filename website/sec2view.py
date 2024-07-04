@@ -449,7 +449,7 @@ def sec2englishInsert():
     except Exception as e:
       print(e)
 
-    return redirect(url_for("sec21view.sec2english"))
+    return redirect(url_for("sec2view.sec2english"))
 
   else:
     classNum = request.args.get('classNum')
